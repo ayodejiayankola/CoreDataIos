@@ -8,6 +8,9 @@
 import UIKit
 import CoreData
 
+
+
+// Filtering is to return data based on certain condition while sorting is to return based on ascending / descending order
 class ViewController: UIViewController{
     
     @IBOutlet weak var tableView: UITableView!
@@ -23,15 +26,27 @@ class ViewController: UIViewController{
         tableView.dataSource = self
         tableView.delegate = self
         
-        //Get items from Core Data
+        // Get items from Core Data
         fetchPeople()
     }
     
     //MARK:- Fetch Data from core data
     func fetchPeople(){
-        //fetch data from core data to display in the table view
+        //   fetch data from core data to display in the table view
         do {
-            self.items =  try context.fetch(Person.fetchRequest())
+            let request = Person.fetchRequest() as NSFetchRequest<Person>
+            
+            //Set the filtering  on the request
+//            let pred = NSPredicate(format: "name CONTAINS %@", "J")
+            //            let pred = NSPredicate(format: "name CONTAINS %@", whatevervariabletobesortedby)
+//            request.predicate = pred
+            
+            //Set the  sorting on the request
+            let sort = NSSortDescriptor(key: "name", ascending: true)
+            request.sortDescriptors = [sort]
+         
+//          request.fetchLimit = 3
+            self.items =  try context.fetch(request)
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
@@ -68,7 +83,6 @@ class ViewController: UIViewController{
             } catch {
                 //Error saving Data
             }
-            
             //Re-fetch the data
             self.fetchPeople()
         }
