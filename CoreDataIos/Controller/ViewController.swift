@@ -28,6 +28,32 @@ class ViewController: UIViewController{
         
         // Get items from Core Data
         fetchPeople()
+        
+        relationshipDemo()
+    }
+    
+    //  MARK:- Entites and relationship
+    func relationshipDemo(){
+         
+        // Create a family
+        let family = Family(context: self.context)
+        family.name = "Abc Family"
+       
+        // Create a person
+        
+        let  person = Person(context: self.context)
+        person.name = "MAggie"
+        person.family = family
+        
+//        family.addToPeople(person)
+        print("This is family \(family.people)")
+        
+        //Save context
+        do {
+            try  self.context.save()
+        } catch {
+            //Error saving Data
+        }
     }
     
     //MARK:- Fetch Data from core data
@@ -42,7 +68,7 @@ class ViewController: UIViewController{
 //            request.predicate = pred
             
             //Set the  sorting on the request
-            let sort = NSSortDescriptor(key: "name", ascending: true)
+            let sort = NSSortDescriptor(key: "name", ascending: false)
             request.sortDescriptors = [sort]
          
 //          request.fetchLimit = 3
