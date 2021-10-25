@@ -14,7 +14,7 @@ import CoreData
 class ViewController: UIViewController{
     
     @IBOutlet weak var tableView: UITableView!
-    
+    @IBOutlet weak var inputFilterText: UITextField!
     //Refrence to managed object context
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
@@ -118,7 +118,16 @@ class ViewController: UIViewController{
         //Show Alert
         self.present(alertController, animated: true, completion: nil)
     }
+    
+    
+    @IBAction func filterButtonPressed(_ sender: UIButton) {
+        
+        print("This is a perfect test")
+    }
 }
+
+
+
 
 
 

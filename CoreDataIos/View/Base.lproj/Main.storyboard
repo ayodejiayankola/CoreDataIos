@@ -37,9 +37,11 @@
                                     <constraint firstAttribute="height" constant="70" id="4nT-kh-SWr"/>
                                 </constraints>
                             </stackView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="SeC-gF-1Mf">
-                                <rect key="frame" x="0.0" y="143" width="414" height="719"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="SeC-gF-1Mf">
+                                <rect key="frame" x="0.0" y="179" width="414" height="683"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="separatorColor" red="0.2156862745" green="0.2156862745" blue="0.2156862745" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PersonCell" id="pOp-jg-6V7" userLabel="PersonCell">
                                         <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
@@ -51,26 +53,63 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3ie-hL-daz">
+                                <rect key="frame" x="5" y="123" width="404" height="51"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S3M-lv-iFJ">
+                                        <rect key="frame" x="264" y="5" width="130" height="41"/>
+                                        <color key="backgroundColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Filter" cornerStyle="large">
+                                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="filterButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="SNa-UJ-2YF"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search based on Prefix" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uS4-s3-2CQ">
+                                        <rect key="frame" x="10" y="5" width="244" height="41"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="10"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="uS4-s3-2CQ" secondAttribute="trailing" constant="150" id="0oG-hE-Y9w"/>
+                                    <constraint firstItem="uS4-s3-2CQ" firstAttribute="top" secondItem="3ie-hL-daz" secondAttribute="top" constant="5" id="7x3-zP-Vih"/>
+                                    <constraint firstAttribute="bottom" secondItem="uS4-s3-2CQ" secondAttribute="bottom" constant="5" id="871-nn-FRF"/>
+                                    <constraint firstAttribute="bottom" secondItem="S3M-lv-iFJ" secondAttribute="bottom" constant="5" id="LHz-fl-r8w"/>
+                                    <constraint firstItem="S3M-lv-iFJ" firstAttribute="top" secondItem="3ie-hL-daz" secondAttribute="top" constant="5" id="QFq-tl-aOC"/>
+                                    <constraint firstAttribute="trailing" secondItem="S3M-lv-iFJ" secondAttribute="trailing" constant="10" id="ewO-0y-7jA"/>
+                                    <constraint firstItem="S3M-lv-iFJ" firstAttribute="leading" secondItem="uS4-s3-2CQ" secondAttribute="trailing" constant="10" id="fCj-0Y-xhI"/>
+                                    <constraint firstItem="uS4-s3-2CQ" firstAttribute="leading" secondItem="3ie-hL-daz" secondAttribute="leading" constant="10" id="pIA-Wp-Spr"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="SeC-gF-1Mf" secondAttribute="bottom" id="3Sg-q5-nGN"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="3ie-hL-daz" secondAttribute="trailing" constant="5" id="3k8-mt-yos"/>
+                            <constraint firstItem="SeC-gF-1Mf" firstAttribute="top" secondItem="3ie-hL-daz" secondAttribute="bottom" constant="5" id="5Gs-bi-h7g"/>
+                            <constraint firstItem="3ie-hL-daz" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="79" id="CVQ-1T-fqZ"/>
                             <constraint firstItem="nsE-i0-um9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Pay-vY-nv0"/>
                             <constraint firstItem="SeC-gF-1Mf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ard-Dj-m5G"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="SeC-gF-1Mf" secondAttribute="trailing" id="bJV-zL-FHY"/>
+                            <constraint firstItem="3ie-hL-daz" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="5" id="k15-4P-pFY"/>
                             <constraint firstItem="nsE-i0-um9" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="nbb-Ou-PUm"/>
-                            <constraint firstItem="SeC-gF-1Mf" firstAttribute="top" secondItem="nsE-i0-um9" secondAttribute="bottom" constant="19" id="pfP-uw-SLi"/>
+                            <constraint firstItem="SeC-gF-1Mf" firstAttribute="top" secondItem="nsE-i0-um9" secondAttribute="bottom" constant="55" id="pfP-uw-SLi"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="nsE-i0-um9" secondAttribute="trailing" id="vwp-De-nhj"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="inputFilterText" destination="uS4-s3-2CQ" id="CII-Yd-iDd"/>
                         <outlet property="tableView" destination="SeC-gF-1Mf" id="hlj-sm-az1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="20" y="84"/>
+            <point key="canvasLocation" x="18.840579710144929" y="83.705357142857139"/>
         </scene>
     </scenes>
     <resources>
