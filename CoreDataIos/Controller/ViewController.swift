@@ -15,11 +15,16 @@ class ViewController: UIViewController{
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var inputFilterText: UITextField!
-    //Refrence to managed object context
+    
+    
+    //1. Refrence to managed object context
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     //  Data for the table
     var items: [Person]?
+    
+    // Variable to search for or filter with
+    var filteredVariable: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,24 +33,21 @@ class ViewController: UIViewController{
         
         // Get items from Core Data
         fetchPeople()
-        
         relationshipDemo()
     }
     
     //  MARK:- Entites and relationship
     func relationshipDemo(){
-         
         // Create a family
         let family = Family(context: self.context)
         family.name = "Abc Family"
-       
-        // Create a person
         
+        // Create a person
         let  person = Person(context: self.context)
         person.name = "MAggie"
         person.family = family
         
-//        family.addToPeople(person)
+//      family.addToPeople(person)
         print("This is family \(family.people)")
         
         //Save context
@@ -61,15 +63,9 @@ class ViewController: UIViewController{
         //   fetch data from core data to display in the table view
         do {
             let request = Person.fetchRequest() as NSFetchRequest<Person>
-            
-            //Set the filtering  on the request
-//            let pred = NSPredicate(format: "name CONTAINS %@", "J")
-            //            let pred = NSPredicate(format: "name CONTAINS %@", whatevervariabletobesortedby)
-//            request.predicate = pred
-            
             //Set the  sorting on the request
-            let sort = NSSortDescriptor(key: "name", ascending: false)
-            request.sortDescriptors = [sort]
+//            let sort = NSSortDescriptor(key: "name", ascending: false)
+//            request.sortDescriptors = [sort]
          
 //          request.fetchLimit = 3
             self.items =  try context.fetch(request)
@@ -121,8 +117,30 @@ class ViewController: UIViewController{
     
     
     @IBAction func filterButtonPressed(_ sender: UIButton) {
+        self.filteredVariable = inputFilterText.text
         
-        print("This is a perfect test")
+        
+        //   fetch data from core data to display in the table view
+        do {
+            let request = Person.fetchRequest() as NSFetchRequest<Person>
+            
+//            Set the filtering  on the request
+            let pred = NSPredicate(format: "name CONTAINS %@", filteredVariable!)
+//            let pred = NSPredicate(format: "name CONTAINS %@", filteredVariable as! CVarArg)
+            request.predicate = pred
+            
+//            //Set the  sorting on the request
+//            let sort = NSSortDescriptor(key: "name", ascending: false)
+//            request.sortDescriptors = [sort]
+         
+//          request.fetchLimit = 3
+            self.items =  try context.fetch(request)
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        } catch {
+            
+        }
     }
 }
 
