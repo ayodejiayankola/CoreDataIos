@@ -17,6 +17,7 @@ The objective of this app is tobe able to save users name , phone number and loc
    2. Creating category names 
    3. Group user based on category created
    4. Adding user phone number and location 
+   5. Revamped UI Designed
   
 ## Instruction
   Kindly checkout to the `feature-Sortingandfiltering` branch to run the app
